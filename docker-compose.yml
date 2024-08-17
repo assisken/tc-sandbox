@@ -1,0 +1,17 @@
+version: '3'
+services:
+  server:
+    container_name: server
+    build:
+      context: .
+      dockerfile: iperf3.dockerfile
+    command: -s
+    volumes:
+      - "./tc:/tc"
+    cap_add:
+      - ALL
+
+  client:
+    container_name: client
+    image: networkstatic/iperf3
+    command: -s
